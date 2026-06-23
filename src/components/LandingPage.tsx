@@ -383,17 +383,17 @@ export default function LandingPage({ onLaunchApp, onSelectTool, onDropFile }: L
               </div>
             </div>
 
-            {/* Bento block 4: Offline PWA */}
+            {/* Bento block 4: Sandboxed PWA */}
             <div className="bg-white p-8 md:col-span-2 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-3 max-w-xl">
                 <span className="text-[10px] font-bold tracking-widest uppercase text-[#D93F0B]">
-                  Offline Operations
+                  Local Operations
                 </span>
                 <h3 className="text-base font-bold text-[#0D0D0C]">
-                  No connectivity? No sweat. Core systems run fully offline.
+                  No connectivity? No sweat. Core systems run fully on your machine.
                 </h3>
                 <p className="text-[12px] text-[#6B6B67] leading-relaxed">
-                  PDFMAX relies on client packages that load immediately in your browser cache. Save it to your dock or home screen via PWA protocols to utilize standard utilities securely in offline airplanes, trains, or fields.
+                  PDFMAX relies on client packages that load immediately in your browser cache. Save it to your dock or home screen via PWA protocols to utilize standard utilities securely on airplanes, trains, or fields without network dependencies.
                 </p>
               </div>
 
@@ -403,7 +403,7 @@ export default function LandingPage({ onLaunchApp, onSelectTool, onDropFile }: L
                 </div>
                 <div className="text-left">
                   <div className="text-xs font-bold text-[#0D0D0C]">PWA Verified</div>
-                  <div className="text-[10px] text-[#6B6B67] leading-normal mt-0.5">Launches and works offline</div>
+                  <div className="text-[10px] text-[#6B6B67] leading-normal mt-0.5">Launches and works anywhere</div>
                 </div>
                 <div className="ml-auto text-[9px] bg-[#FDF0EB] border border-[#D93F0B]/20 rounded px-1.5 py-0.5 text-[#D93F0B] font-bold">PWA</div>
               </div>
@@ -448,7 +448,7 @@ export default function LandingPage({ onLaunchApp, onSelectTool, onDropFile }: L
                   { feat: 'Watermark on output', our: 'Never', competitor1: 'For advanced layers', competitor2: 'Yes (free level)', competitor3: 'Yes (free level)' },
                   { feat: 'Requires sign-up accounts', our: 'No', competitor1: 'Yes, for most tools', competitor2: 'Mandatory', competitor3: 'Mandatory' },
                   { feat: 'Client-side WASM', our: 'Yes (Document safety)', competitor1: 'No (SaaS upload)', competitor2: 'No (SaaS upload)', competitor3: 'No (SaaS upload)' },
-                  { feat: 'Offline service support', our: 'Yes (IndexedDB cache)', competitor1: 'No', competitor2: 'No', competitor3: 'No' },
+                  { feat: 'Local/Sandbox service support', our: 'Yes (IndexedDB cache)', competitor1: 'No', competitor2: 'No', competitor3: 'No' },
                   { feat: 'No Ads or cookies trackers', our: 'Yes (100% clean)', competitor1: 'No', competitor2: 'No', competitor3: 'No' }
                 ].map((row, idx) => (
                   <tr key={idx} className="hover:bg-[#F7F7F5]/50 transition-colors">
@@ -506,7 +506,7 @@ export default function LandingPage({ onLaunchApp, onSelectTool, onDropFile }: L
       <footer className="bg-[#F7F7F5] border-t border-[#E0E0DC] py-10 px-4 md:px-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-xs text-[#A8A8A4] font-medium text-center md:text-left leading-relaxed">
-            <span className="font-bold text-[#0D0D0C]">PDFMAX</span> — Everything PDF. Private & Offline. Powered by high-speed client WebAssembly routines.
+            <span className="font-bold text-[#0D0D0C]">PDFMAX</span> — Everything PDF. Private & Sandboxed. Powered by high-speed client WebAssembly routines.
           </div>
           <div className="flex gap-6 items-center">
             <a href="#" onClick={(e) => { e.preventDefault(); onLaunchApp(); }} className="text-xs font-bold text-[#6B6B67] hover:text-[#0.D0D0C] transition-colors">Launch Workstation</a>

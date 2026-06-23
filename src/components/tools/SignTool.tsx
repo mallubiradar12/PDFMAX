@@ -543,7 +543,7 @@ export default function SignTool({ onSuccess }: SignToolProps) {
           </div>
           <div>
             <h3 className="font-semibold text-slate-100 text-base">Signature Stamped Successfully!</h3>
-            <p className="text-xs text-slate-500 mt-1">Form filled and signed offline inside local secure storage sandbox.</p>
+            <p className="text-xs text-slate-500 mt-1">Form filled and signed securely inside local secure storage sandbox.</p>
           </div>
 
           <div className="max-w-md mx-auto p-3.5 bg-slate-950 border border-slate-850 rounded-lg flex items-center justify-between">

@@ -36,7 +36,7 @@ export default function OcrTool({ onSuccess }: OcrToolProps) {
     setIsProcessing(true);
     try {
       if (file.type === 'application/pdf') {
-        // PDF vector layer extraction - extremely fast & robust 100% offline
+        // PDF vector layer extraction - extremely fast & robust 100% local/client-side
         const pdfjs = await loadPdfJs();
         const loadingTask = pdfjs.getDocument({ data: file.bytes.slice() });
         const pdf = await loadingTask.promise;

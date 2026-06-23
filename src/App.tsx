@@ -86,7 +86,7 @@ export default function App() {
   const handleToolSuccessLog = (newName: string, size: number, bytes: Uint8Array) => {
     if (!activeToolId) return;
     
-    // Convert output array buffer to an object URL for persistent offline browser downloads
+    // Convert output array buffer to an object URL for persistent local browser downloads
     const blob = new Blob([bytes], { type: 'application/pdf' });
     const localUrl = URL.createObjectURL(blob);
 
@@ -261,21 +261,21 @@ export default function App() {
       onDragOver={handleDragOver}
       onDragLeave={() => setIsGlobalDrag(false)}
       onDrop={handleDropFile}
-      className={`min-h-screen bg-slate-950 font-sans text-slate-100 flex flex-col md:flex-row relative ${
-        isGlobalDrag ? 'ring-4 ring-indigo-500/50' : ''
+      className={`min-h-screen bg-[#F7F7F5] font-sans text-[#0D0D0C] flex flex-col md:flex-row relative ${
+        isGlobalDrag ? 'ring-4 ring-[#D93F0B]/50' : ''
       }`}
     >
       {/* Dynamic Overlay for drops */}
       {isGlobalDrag && (
-        <div className="absolute inset-0 bg-indigo-950/80 backdrop-blur-md z-40 flex flex-col items-center justify-center p-6 text-center text-indigo-200 pointer-events-none animate-fade-in">
+        <div className="absolute inset-0 bg-[#FDF0EB]/95 backdrop-blur-md z-45 flex flex-col items-center justify-center p-6 text-center text-[#D93F0B] pointer-events-none animate-fade-in border-4 border-dashed border-[#D93F0B]/40 m-2 rounded-2xl">
           <Upload className="animate-bounce" size={48} />
-          <h2 className="text-xl font-bold mt-4">Drop your document anywhere!</h2>
-          <p className="text-xs text-indigo-400 mt-1">PDFMAX will analyze variables locally inside browser memory.</p>
+          <h2 className="text-xl font-serif font-bold italic mt-4">Drop your document anywhere!</h2>
+          <p className="text-xs text-[#6B6B67] mt-1">PDFMAX will analyze variables locally inside browser memory.</p>
         </div>
       )}
 
       {/* LEFT SIDEBAR NAVIGATION BAR */}
-      <aside className="w-full md:w-64 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-855 flex flex-col justify-between flex-shrink-0">
+      <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-[#E0E0DC] flex flex-col justify-between flex-shrink-0">
         <div className="p-5 space-y-6">
           {/* Logo brand */}
           <div
@@ -283,26 +283,23 @@ export default function App() {
               setViewMode('landing');
               setActiveToolId(null);
             }}
-            className="flex items-center gap-2.5 cursor-pointer hover:opacity-90 select-none group"
+            className="flex items-center gap-2 cursor-pointer hover:opacity-95 select-none group"
           >
-            <div className="bg-gradient-to-tr from-indigo-700 to-indigo-500 p-2 rounded-xl text-white shadow-md shadow-indigo-600/20 group-hover:scale-103 transition">
-              <FileText size={20} />
-            </div>
-            <div>
-              <span className="font-extrabold text-base tracking-wider bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-                PDFMAX
-              </span>
-              <span className="block text-[9px] font-semibold text-indigo-400 tracking-wider">Fast. Private. Fast.</span>
-            </div>
+            <span className="font-extrabold text-base tracking-wider uppercase text-[#0D0D0C]">
+              PDF<span className="text-[#D93F0B]">MAX</span>
+            </span>
+            <span className="text-[9px] font-bold text-[#A8A8A4] bg-[#F7F7F5] border border-[#E0E0DC] px-1.5 py-0.5 rounded uppercase tracking-wider">
+              Sandbox
+            </span>
           </div>
 
-          <p className="text-[10px] text-slate-500 leading-relaxed max-w-[200px]">
+          <p className="text-[10px] text-[#6B6B67] leading-relaxed max-w-[200px]">
             100% Free file manipulation. Zero AI bloat. Zero limits. Underwritten by browser-side WASM.
           </p>
 
           {/* Quick Categories list selection */}
           <nav className="space-y-1.5 pt-4">
-            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-2.5 mb-2">
+            <div className="text-[10px] font-bold text-[#A8A8A4] uppercase tracking-wider px-2.5 mb-2">
               Core Categories
             </div>
 
@@ -311,10 +308,10 @@ export default function App() {
                 setViewMode('landing');
                 setActiveToolId(null);
               }}
-              className="w-full flex items-center justify-between text-left px-3 py-2 text-xs rounded-lg transition font-medium text-slate-400 hover:bg-slate-850 hover:text-slate-200 mb-2 border border-slate-800/40 bg-slate-900/40"
+              className="w-full flex items-center justify-between text-left px-3 py-2 text-xs rounded-lg transition font-semibold text-[#6B6B67] hover:bg-[#F0F0EC] hover:text-[#0D0D0C] mb-2 border border-[#E0E0DC] bg-[#F7F7F5]"
             >
               <span className="flex items-center gap-1.5">🏠 Home Landing</span>
-              <span className="text-[9px] bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded font-bold font-mono uppercase tracking-wider">
+              <span className="text-[9px] bg-white border border-[#E0E0DC] text-[#A8A8A4] px-1.5 py-0.5 rounded font-bold font-mono uppercase tracking-wider">
                 Home
               </span>
             </button>
@@ -336,12 +333,12 @@ export default function App() {
                 }}
                 className={`w-full flex items-center justify-between text-left px-3 py-2 text-xs rounded-lg transition font-medium ${
                   activeCategory === cat.id && !activeToolId
-                    ? 'bg-indigo-650/15 border border-indigo-500/20 text-indigo-400'
-                    : 'text-slate-400 hover:bg-slate-850 hover:text-slate-200'
+                    ? 'bg-[#FDF0EB] border border-[#D93F0B]/20 text-[#D93F0B]'
+                    : 'text-[#6B6B67] hover:bg-[#F7F7F5] hover:text-[#0D0D0C]'
                 }`}
               >
                 <span>{cat.label}</span>
-                <span className="text-[10px] bg-slate-800 text-slate-500 px-1.5 py-0.5 rounded-full font-mono font-bold">
+                <span className="text-[10px] bg-[#F7F7F5] border border-[#E0E0DC] text-[#6B6B67] px-1.5 py-0.5 rounded-full font-mono font-bold">
                   {cat.count}
                 </span>
               </button>
@@ -350,20 +347,20 @@ export default function App() {
         </div>
 
         {/* Dashboard storage / bottom credits block */}
-        <div className="p-4 border-t border-slate-855 bg-slate-930 text-[10px] text-slate-500 select-none">
-          <div className="flex items-center gap-1.5 text-indigo-450 font-bold mb-1">
+        <div className="p-4 border-t border-[#E0E0DC] bg-[#F7F7F5] text-[10px] text-[#6B6B67] select-none">
+          <div className="flex items-center gap-1.5 text-[#D93F0B] font-bold mb-1">
             <Shield size={11} /> Secured Local Memory
           </div>
-          <p className="leading-snug">
+          <p className="leading-snug text-[#A8A8A4]">
             All files are held dynamically inside browser sandboxed state memory. No remote crawler captures.
           </p>
         </div>
       </aside>
 
       {/* CORE WORKSPACE MAIN WINDOW AREA */}
-      <main className="flex-1 flex flex-col justify-between overflow-x-hidden">
+      <main className="flex-1 flex flex-col justify-between overflow-x-hidden bg-[#F7F7F5]">
         {/* Dynamic header navigation bar */}
-        <header className="p-4 bg-slate-900 border-b border-slate-855 flex items-center justify-between flex-wrap gap-3">
+        <header className="p-4 bg-white border-b border-[#E0E0DC] flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             {activeToolId ? (
               <button
@@ -371,7 +368,7 @@ export default function App() {
                   setActiveToolId(null);
                   setDroppedFile(null);
                 }}
-                className="p-1.5 bg-slate-850 hover:bg-slate-800 text-slate-300 rounded-lg hover:text-white transition flex items-center gap-1 text-xs"
+                className="p-1.5 bg-[#F7F7F5] hover:bg-[#F0F0EC] border border-[#E0E0DC] text-[#6B6B67] rounded-lg hover:text-[#0D0D0C] transition flex items-center gap-1 text-xs"
               >
                 <ArrowLeft size={14} />
                 <span>All Services</span>
@@ -379,26 +376,26 @@ export default function App() {
             ) : (
               <button
                 onClick={() => setViewMode('landing')}
-                className="p-1.5 bg-slate-850 hover:bg-slate-800 text-slate-300 rounded-lg hover:text-white transition flex items-center gap-1 text-xs"
+                className="p-1.5 bg-[#F7F7F5] hover:bg-[#F0F0EC] border border-[#E0E0DC] text-[#6B6B67] rounded-lg hover:text-[#0D0D0C] transition flex items-center gap-1 text-xs"
               >
                 <ArrowLeft size={14} />
                 <span>Home Landing</span>
               </button>
             )}
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-400 font-medium">
-              <Sparkles className="text-indigo-450" size={13} />
-              <span>Offline Sandboxed Processing Loaded</span>
+            <div className="hidden sm:flex items-center gap-2 text-xs text-[#6B6B67] font-medium">
+              <Sparkles className="text-[#D93F0B]" size={13} />
+              <span>Private Sandboxed Processing Loaded</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsCommandOpen(true)}
-              className="px-2.5 py-1.5 bg-slate-850 hover:bg-slate-800 text-xs text-slate-400 hover:text-slate-200 rounded-lg transition border border-slate-800/80 flex items-center gap-1.5 cursor-pointer select-none"
+              className="px-2.5 py-1.5 bg-[#F7F7F5] hover:bg-[#F0F0EC] text-xs text-[#6B6B67] hover:text-[#0D0D0C] rounded-lg transition border border-[#E0E0DC] flex items-center gap-1.5 cursor-pointer select-none"
             >
               <Command size={12} />
               <span>Search Services</span>
-              <kbd className="hidden md:inline bg-slate-900 px-1 rounded text-[10px] border border-slate-750">Ctrl+K</kbd>
+              <kbd className="hidden md:inline bg-white px-1 rounded text-[10px] border border-[#E0E0DC] text-[#A8A8A4]">Ctrl+K</kbd>
             </button>
           </div>
         </header>
@@ -407,27 +404,27 @@ export default function App() {
         <div className="p-6 md:p-8 flex-grow">
           {droppedFile && !activeToolId ? (
             /* INTERATIVE FILE SELECT PROMPT */
-            <div className="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-6 shadow-2xl animate-fade-in text-left">
+            <div className="max-w-xl mx-auto bg-white border border-[#E0E0DC] rounded-xl p-6 space-y-6 shadow-sm animate-fade-in text-left font-sans">
               <div className="flex justify-between items-start">
                 <div className="flex gap-2.5 items-center">
-                  <div className="p-2 bg-indigo-950/40 text-indigo-400 border border-indigo-905 rounded-xl">
+                  <div className="p-2 bg-[#FDF0EB] text-[#D93F0B] border border-[#D93F0B]/15 rounded-xl">
                     <FileText size={22} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-100 text-sm">Dropped file "{droppedFile.name}"</h3>
-                    <span className="text-[10px] text-slate-500 font-mono block">Size: {formatBytes(droppedFile.size)}</span>
+                    <h3 className="font-semibold text-[#0D0D0C] text-sm font-sans">Dropped file "{droppedFile.name}"</h3>
+                    <span className="text-[10px] text-[#A8A8A4] font-mono block">Size: {formatBytes(droppedFile.size)}</span>
                   </div>
                 </div>
                 <button
                   onClick={clearDroppedFile}
-                  className="p-1 text-slate-500 hover:text-slate-350 bg-slate-850 rounded"
+                  className="p-1 px-2 border border-[#E0E0DC] text-[#6B6B67] hover:text-[#0D0D0C] bg-[#F7F7F5] rounded text-xs transition"
                 >
                   Cancel
                 </button>
               </div>
 
               <div className="space-y-2">
-                <span className="text-[11px] text-slate-500 uppercase tracking-widest font-bold">What action would you like to perform?</span>
+                <span className="text-[11px] text-[#6B6B67] uppercase tracking-widest font-bold">What action would you like to perform?</span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {[
                     { id: 'compress', label: 'Optimize Sizing', desc: 'Optimize redundant streams' },
@@ -471,10 +468,10 @@ export default function App() {
 
                         setDroppedFile(null);
                       }}
-                      className="text-left p-3 rounded-lg bg-slate-950 hover:bg-indigo-650/10 border border-slate-850 hover:border-indigo-500 transition group"
+                      className="text-left p-3 rounded-lg bg-[#F7F7F5] hover:bg-[#FDF0EB] border border-[#E0E0DC] hover:border-[#D93F0B]/40 transition group"
                     >
-                      <span className="block text-xs font-bold text-slate-200 group-hover:text-indigo-300">{act.label}</span>
-                      <span className="block text-[10px] text-slate-500 leading-normal mt-0.5">{act.desc}</span>
+                      <span className="block text-xs font-bold text-[#0D0D0C] group-hover:text-[#D93F0B]">{act.label}</span>
+                      <span className="block text-[10px] text-[#6B6B67] leading-normal mt-0.5">{act.desc}</span>
                     </button>
                   ))}
                 </div>
@@ -485,13 +482,13 @@ export default function App() {
             <section className="max-w-5xl mx-auto space-y-4 animate-fade-in animate-duration-150">
               <div className="flex justify-between items-start gap-4">
                 <div className="text-left">
-                  <span className="text-[10px] font-bold text-indigo-400 tracking-wider uppercase">
+                  <span className="text-[10px] font-bold text-[#D93F0B] tracking-wider uppercase">
                     Core Tool Series • Browser Engine
                   </span>
-                  <h1 className="text-xl md:text-2xl font-extrabold text-white mt-1">
+                  <h1 className="text-xl md:text-2xl font-serif font-light text-[#0D0D0C] mt-1">
                     {activeToolMeta?.name}
                   </h1>
-                  <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
+                  <p className="text-xs text-[#6B6B67] mt-1 max-w-2xl leading-relaxed">
                     {activeToolMeta?.longDescription}
                   </p>
                 </div>
@@ -500,8 +497,8 @@ export default function App() {
                   onClick={(e) => toggleFavorite(activeToolId, e)}
                   className={`p-2 rounded-xl border transition ${
                     favorites.includes(activeToolId)
-                      ? 'bg-yellow-905/10 border-yellow-501 text-yellow-405'
-                      : 'border-slate-850 hover:bg-slate-855 text-slate-500 hover:text-slate-200'
+                      ? 'bg-[#FDF0EB] border-[#D93F0B]/20 text-[#D93F0B]'
+                      : 'border-[#E0E0DC] hover:bg-[#FDF0EB]/10 text-[#6B6B67] hover:text-[#0D0D0C]'
                   }`}
                   title="Pin tool"
                 >
@@ -510,32 +507,31 @@ export default function App() {
               </div>
 
               {/* Mount the actual tool */}
-              <div className="pt-2">
+              <div className="pt-2 bg-white border border-[#E0E0DC] rounded-xl p-6 shadow-sm">
                 {renderActiveTool()}
               </div>
             </section>
           ) : (
             /* LANDING MAIN DIRECTORY DASHBOARD */
             <div className="space-y-10 max-w-6xl mx-auto text-left">
-              <header className="relative py-12 p-6 overflow-hidden rounded-2xl border border-slate-855 bg-gradient-to-b from-slate-900 to-indigo-950/20 text-center space-y-4 shadow-xl">
+              <header className="relative py-12 p-6 overflow-hidden rounded-2xl border border-[#E0E0DC] bg-white text-center space-y-4 shadow-sm">
                 {/* Background ambient accents */}
-                <div className="absolute top-0 right-0 h-40 w-40 bg-indigo-500/5 blur-[80px] rounded-full"></div>
-                <div className="absolute bottom-0 left-0 h-40 w-40 bg-indigo-700/5 blur-[80px] rounded-full"></div>
+                <div className="absolute top-0 right-0 h-40 w-40 bg-[#D93F0B]/5 blur-[80px] rounded-full"></div>
 
                 <div className="flex justify-center flex-col items-center">
-                  <div className="px-3 py-1 bg-indigo-950/70 border border-indigo-900/60 rounded-full text-indigo-400 font-semibold mb-2 text-[10px] tracking-wider uppercase select-none">
-                    V1 Launch Active Workspace • Zero AI
+                  <div className="px-3 py-1 bg-[#FDF0EB] border border-[#D93F0B]/15 rounded-full text-[#D93F0B] font-bold mb-2 text-[10px] tracking-wider uppercase select-none">
+                    V1 Launch Workspace • Zero AI
                   </div>
-                  <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-                    Everything PDF. No AI. Fast.
+                  <h1 className="text-3xl md:text-4xl font-serif font-light tracking-tight text-[#0D0D0C]">
+                    Everything PDF. <span className="font-bold italic text-[#D93F0B]">No AI. Fast.</span>
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400 mt-2 max-w-xl mx-auto leading-relaxed">
+                  <p className="text-xs md:text-sm text-[#6B6B67] mt-2 max-w-xl mx-auto leading-relaxed">
                     Zero paywalls. Zero file limits. Files process entirely on your machine.
                   </p>
                 </div>
 
                 {/* CENTRAL DRAG AND DROP LANDING CARD */}
-                <div className="max-w-md mx-auto aspect-[3/1] rounded-xl border-2 border-dashed border-slate-700 hover:border-indigo-500 bg-slate-950/80 p-5 flex flex-col justify-center items-center transition cursor-pointer relative group mt-3">
+                <div className="max-w-md mx-auto aspect-[3/1] rounded-xl border-2 border-dashed border-[#C8C8C4] hover:border-[#D93F0B] bg-[#F7F7F5] p-5 flex flex-col justify-center items-center transition cursor-pointer relative group mt-3">
                   <input
                     type="file"
                     accept=".pdf"
@@ -546,11 +542,11 @@ export default function App() {
                       }
                     }}
                   />
-                  <Upload className="text-indigo-400 group-hover:animate-bounce transition" size={24} />
-                  <span className="block text-xs font-bold text-slate-200 mt-2">
+                  <Upload className="text-[#D93F0B] group-hover:animate-bounce transition" size={24} />
+                  <span className="block text-xs font-bold text-[#0D0D0C] mt-2 font-sans">
                     Drag any PDF directly onto layout screen
                   </span>
-                  <span className="block text-[10px] text-slate-500 mt-0.5">
+                  <span className="block text-[10px] text-[#6B6B67] mt-0.5">
                     Or select browser browse loop
                   </span>
                 </div>
@@ -559,8 +555,8 @@ export default function App() {
               {/* Favorites pin directory */}
               {favorites.length > 0 && (
                 <div className="space-y-3 animate-fade-in">
-                  <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                    <Star className="text-yellow-500" size={14} fill="currentColor" />
+                  <div className="flex items-center gap-1.5 text-xs font-semibold text-[#A8A8A4] uppercase tracking-wider">
+                    <Star className="text-amber-500" size={14} fill="currentColor" />
                     <span>Pinned Favorites ({favorites.length})</span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -568,18 +564,17 @@ export default function App() {
                       <div
                         key={tool.id}
                         onClick={() => setActiveToolId(tool.id)}
-                        className="p-4 bg-slate-900 border border-slate-800 rounded-xl hover:border-indigo-500/70 cursor-pointer transition shadow hover:shadow-indigo-500/5 group relative text-left"
+                        className="p-4 bg-white border border-[#E0E0DC] rounded-xl hover:border-[#D93F0B] cursor-pointer transition shadow-sm hover:shadow-[0_4px_20px_rgba(217,63,11,0.03)] group relative text-left"
                       >
                         <div className="flex gap-3">
-                          <div className="p-2 bg-indigo-950/40 border border-indigo-900/30 rounded-lg text-indigo-400 group-hover:scale-102 transition">
-                            {/* Dynamically parsed icons */}
+                          <div className="p-2 bg-[#F7F7F5] border border-[#E0E0DC] rounded-lg text-[#6B6B67] group-hover:text-[#D93F0B] group-hover:bg-[#FDF0EB] group-hover:border-[#D93F0B]/20 transition font-sans">
                             {renderToolIcon(tool.iconName)}
                           </div>
                           <div>
-                            <h3 className="font-bold text-xs text-slate-200 group-hover:text-indigo-300">
+                            <h3 className="font-bold text-xs text-[#0D0D0C] group-hover:text-[#D93F0B]">
                               {tool.name}
                             </h3>
-                            <p className="text-[11px] text-slate-450 mt-1 leading-relaxed">
+                            <p className="text-[11px] text-[#6B6B67] mt-1 leading-relaxed">
                               {tool.description}
                             </p>
                           </div>
@@ -592,20 +587,20 @@ export default function App() {
 
               {/* Main General Directory tools */}
               <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-slate-855 pb-2">
+                <div className="flex justify-between items-center border-b border-[#E0E0DC] pb-2">
                   <div className="flex gap-2 items-center">
-                    <Grid className="text-slate-500" size={16} />
-                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                    <Grid className="text-[#6B6B67]" size={16} />
+                    <span className="text-xs font-bold text-[#A8A8A4] uppercase tracking-widest">
                       PDFMAX Utilities Directory ({filteredTools.length})
                     </span>
                   </div>
 
                   <input
                     type="text"
-                    placeholder="Fuzzy search tools..."
+                    placeholder="Search tools..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-[11px] focus:outline-none focus:border-indigo-505 focus:text-slate-200 text-slate-400 w-44"
+                    className="bg-white border border-[#E0E0DC] rounded-lg px-2.5 py-1 text-[11px] focus:outline-none focus:border-[#D93F0B] focus:text-[#0D0D0C] text-[#6B6B67] w-44 font-sans"
                   />
                 </div>
 
@@ -619,33 +614,33 @@ export default function App() {
                           setActiveToolId(tool.id);
                           setSearchQuery('');
                         }}
-                        className="p-4.5 bg-slate-900 border border-slate-800 rounded-xl hover:border-indigo-500 hover:shadow shadow-lg hover:shadow-indigo-600/5 cursor-pointer group transition duration-200 flex flex-col justify-between"
+                        className="p-4.5 bg-white border border-[#E0E0DC] rounded-xl hover:border-[#D93F0B] hover:shadow-[0_4px_20px_rgba(217,63,11,0.03)] cursor-pointer group transition duration-200 flex flex-col justify-between font-sans relative"
                       >
                         <div className="flex gap-3">
                           <button
                             onClick={(e) => toggleFavorite(tool.id, e)}
-                            className="absolute top-3 right-3 text-slate-650 hover:text-yellow-405 group-hover:opacity-100 transition p-1 rounded-full hover:bg-slate-800"
+                            className="absolute top-3 right-3 text-[#A8A8A4] hover:text-amber-500 group-hover:opacity-100 transition p-1 rounded-full hover:bg-[#F7F7F5]"
                           >
-                            <Star fill={isFav ? '#f59e0b' : 'none'} className={isFav ? 'text-yellow-505' : ''} size={13} />
+                            <Star fill={isFav ? '#f59e0b' : 'none'} className={isFav ? 'text-amber-500' : ''} size={13} />
                           </button>
 
-                          <div className="p-2.5 bg-indigo-950/40 border border-indigo-900/30 rounded-xl text-indigo-400 flex-shrink-0 group-hover:scale-103 transition self-start">
+                          <div className="p-2.5 bg-[#F7F7F5] border border-[#E0E0DC] rounded-xl text-[#6B6B67] group-hover:text-[#D93F0B] group-hover:bg-[#FDF0EB] group-hover:border-[#D93F0B]/20 flex-shrink-0 group-hover:scale-103 transition self-start">
                             {renderToolIcon(tool.iconName)}
                           </div>
                           <div className="pr-3 text-left">
-                            <h3 className="font-bold text-xs text-slate-100 group-hover:text-indigo-300">
+                            <h3 className="font-bold text-xs text-[#0D0D0C] group-hover:text-[#D93F0B]">
                               {tool.name}
                             </h3>
-                            <p className="text-[11px] text-slate-450 mt-1 pr-1.5 leading-relaxed">
+                            <p className="text-[11px] text-[#6B6B67] mt-1 pr-1.5 leading-relaxed">
                               {tool.description}
                             </p>
                           </div>
                         </div>
 
                         {/* Extra tags */}
-                        <div className="pt-4 flex justify-between items-center text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest border-t border-slate-855 mt-4">
+                        <div className="pt-4 flex justify-between items-center text-[9px] font-mono font-bold text-[#A8A8A4] uppercase tracking-widest border-t border-[#F0F0EC] mt-4">
                           <span>{tool.category}</span>
-                          <span className="text-indigo-455 opacity-0 group-hover:opacity-100 transition duration-150">
+                          <span className="text-[#D93F0B] opacity-0 group-hover:opacity-100 transition duration-150 font-sans font-semibold">
                             Launch Tool →
                           </span>
                         </div>
@@ -658,24 +653,24 @@ export default function App() {
               {/* SYSTEM ACTIVITY REGISTRY LOGS */}
               {recents.length > 0 && (
                 <div className="space-y-3 animate-fade-in uppercase">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                    <Clock className="text-slate-500" size={14} />
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#A8A8A4] uppercase tracking-widest">
+                    <Clock className="text-[#6B6B67]" size={14} />
                     <span>Recent Worksheets ({recents.length})</span>
                   </div>
-                  <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
-                    <div className="divide-y divide-slate-855 bg-slate-950">
+                  <div className="bg-white border border-[#E0E0DC] rounded-xl overflow-hidden shadow-sm">
+                    <div className="divide-y divide-[#E0E0DC] bg-[#F7F7F5]">
                       {recents.map((item) => (
                         <div
                           key={item.id}
                           className="flex justify-between items-center p-3.5 flex-wrap sm:flex-nowrap gap-3"
                         >
                           <div className="flex items-center gap-3 pr-4 text-left min-w-0">
-                            <FileText className="text-indigo-400 flex-shrink-0" size={18} />
-                            <div className="truncate">
-                              <span className="block text-xs font-bold text-slate-200 truncate normal-case">
+                            <FileText className="text-[#D93F0B] flex-shrink-0" size={18} />
+                            <div className="truncate text-[#0D0D0C]">
+                              <span className="block text-xs font-bold text-[#0D0D0C] truncate normal-case font-medium">
                                 {item.name}
                               </span>
-                              <span className="block text-[9px] text-slate-500 font-mono mt-0.5">
+                              <span className="block text-[9px] text-[#6B6B67] font-mono mt-0.5">
                                 {formatBytes(item.size)} • {new Date(item.timestamp).toLocaleTimeString()}
                               </span>
                             </div>
@@ -685,7 +680,7 @@ export default function App() {
                             <a
                               href={item.downloadUrl}
                               download={item.name}
-                              className="px-3.5 py-1.5 bg-indigo-600/30 hover:bg-indigo-600 text-indigo-200 hover:text-white border border-indigo-500/20 text-xs font-bold rounded-lg transition self-center flex items-center gap-1 flex-shrink-0 whitespace-nowrap"
+                              className="px-3.5 py-1.5 bg-[#FDF0EB] hover:bg-[#D93F0B] text-[#D93F0B] hover:text-white border border-[#D93F0B]/15 text-xs font-bold rounded-lg transition self-center flex items-center gap-1 flex-shrink-0 whitespace-nowrap"
                             >
                               Download Save
                             </a>
@@ -701,15 +696,15 @@ export default function App() {
         </div>
 
         {/* Global Dashboard footer */}
-        <footer className="p-5 border-t border-slate-855 text-center text-[11px] text-slate-500 bg-slate-900 flex justify-between items-center sm:flex-row flex-col gap-2">
-          <div className="flex items-center gap-1 font-semibold text-slate-400">
+        <footer className="p-5 border-t border-[#E0E0DC] text-center text-[11px] text-[#A8A8A4] bg-white flex justify-between items-center sm:flex-row flex-col gap-2">
+          <div className="flex items-center gap-1 font-semibold text-[#6B6B67]">
             <span>© PDFMAX Inc.</span>
             <span>- Client-side browser execution</span>
           </div>
           <div className="flex gap-4">
-            <span className="hover:text-slate-350 select-none">No Paid APIs</span>
-            <span className="hover:text-slate-350 select-none">No Watermarks</span>
-            <span className="hover:text-slate-350 select-none">No Size Limits</span>
+            <span className="hover:text-[#0D0D0C] select-none">No Paid APIs</span>
+            <span className="hover:text-[#0D0D0C] select-none">No Watermarks</span>
+            <span className="hover:text-[#0D0D0C] select-none">No Size Limits</span>
           </div>
         </footer>
       </main>
@@ -726,20 +721,20 @@ export default function App() {
 
       {/* FLOATING DIRECT DOWNLOAD ASSISTANT BANNER */}
       {latestCompiled && (
-        <div className="fixed bottom-6 right-6 left-6 md:left-auto md:w-96 bg-slate-900 border-2 border-emerald-500 rounded-2xl p-4 shadow-2xl z-50 animate-bounce-short text-left transition duration-300">
+        <div className="fixed bottom-6 right-6 left-6 md:left-auto md:w-96 bg-white border border-[#E0E0DC] rounded-xl p-4 shadow-xl z-50 animate-bounce-short text-left transition duration-300 font-sans">
           <div className="flex items-start justify-between gap-3">
             <div className="flex gap-2.5 items-center">
-              <div className="p-2 bg-emerald-950/80 text-emerald-400 border border-emerald-900 rounded-xl flex-shrink-0 animate-pulse">
+              <div className="p-2 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-xl flex-shrink-0">
                 <Check size={18} />
               </div>
               <div className="min-w-0">
-                <span className="block text-[10px] uppercase font-mono font-bold tracking-widest text-emerald-400">
+                <span className="block text-[10px] uppercase font-mono font-bold tracking-widest text-emerald-600">
                   Document Ready!
                 </span>
-                <span className="block text-xs font-bold text-slate-100 truncate mt-0.5 normal-case" title={latestCompiled.name}>
+                <span className="block text-xs font-medium text-[#0D0D0C] truncate mt-0.5 normal-case" title={latestCompiled.name}>
                   {latestCompiled.name}
                 </span>
-                <span className="block text-[10px] text-slate-400 font-mono mt-0.5">
+                <span className="block text-[10px] text-[#6B6B67] font-mono mt-0.5">
                   Size: {formatBytes(latestCompiled.size)}
                 </span>
               </div>
@@ -747,7 +742,7 @@ export default function App() {
             
             <button
               onClick={() => setLatestCompiled(null)}
-              className="text-slate-500 hover:text-slate-300 p-1 hover:bg-slate-800 rounded-md transition"
+              className="text-[#6B6B67] hover:text-[#0D0D0C] p-1 hover:bg-[#F7F7F5] rounded-md transition"
               title="Dismiss"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -760,7 +755,7 @@ export default function App() {
             <a
               href={latestCompiled.downloadUrl}
               download={latestCompiled.name}
-              className="flex-1 py-2 px-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-bold rounded-xl shadow-md shadow-emerald-950/30 transition flex items-center justify-center gap-2"
+              className="flex-1 py-2 px-4 bg-gradient-to-r from-emerald-650 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-bold rounded-xl shadow transition flex items-center justify-center gap-2"
               title="Download direct to local machine"
             >
               <Download size={14} />
@@ -768,7 +763,7 @@ export default function App() {
             </a>
             <button
               onClick={() => setLatestCompiled(null)}
-              className="px-3.5 py-2 bg-slate-850 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-medium rounded-xl transition border border-slate-800"
+              className="px-3.5 py-2 bg-[#F7F7F5] hover:bg-[#F0F0EC] text-[#6B6B67] hover:text-[#0D0D0C] text-xs font-medium rounded-xl transition border border-[#E0E0DC]"
             >
               Dismiss
             </button>

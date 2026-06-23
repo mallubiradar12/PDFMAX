@@ -297,7 +297,7 @@ export default function ConvertFromPdfTool({ onSuccess, defaultFormat }: Convert
           <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-5 shadow-lg text-left">
             <div>
               <h3 className="text-sm font-semibold text-slate-200 mb-1">Choose Target Output Format</h3>
-              <p className="text-xs text-slate-500">Offline-first high consistency formatting conversions.</p>
+              <p className="text-xs text-slate-500">Client-side high consistency formatting conversions.</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[35vh] overflow-y-auto pr-1">
