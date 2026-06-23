@@ -1,0 +1,6 @@
+{
+  "name": "PDFMAX",
+  "description": "A complete free PDF platform. No AI, fast, private, and professional. Merge, split, compress, edit, convert, organize, and sign PDFs entirely in your browser.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
